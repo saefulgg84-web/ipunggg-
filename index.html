@@ -25,20 +25,21 @@
       padding-bottom:40px;
     }
 
-    header{
-      width:100%;
-      max-width:var(--max-width);
-      margin:18px 12px;
-      background:var(--card);
-      border-radius:12px;
-      overflow:hidden;
+    /* HEADER / LOGO */
+    header {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 18px auto;
+      background: var(--card);
+      border-radius: 12px;
       box-shadow: 0 8px 24px rgba(2,6,23,0.06);
+      text-align: center;
+      padding: 16px; /* ruang atas & bawah */
     }
-    header img{
-      width:100%;
-      height:180px;
-      object-fit:cover;
-      display:block;
+    header img {
+      max-width: 200px; /* atur sesuai kebutuhan */
+      height: auto;      /* menjaga proporsional */
+      display: inline-block;
     }
 
     .container{
@@ -56,7 +57,7 @@
       padding-bottom:4px;
     }
 
-    /* HOSTING ROW: kiri-kanan */
+    /* HOSTING: kiri-kanan */
     .hosting-row{
       display:flex;
       gap:20px;
@@ -67,6 +68,7 @@
       min-width:220px;
     }
 
+    /* DESAIN GRID */
     .products-grid {
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -74,7 +76,7 @@
       padding: 10px 0;
     }
 
-    /* Product card tanpa gambar */
+    /* Product card */
     .product-card{
       background:var(--card);
       border-radius:10px;
@@ -85,7 +87,7 @@
       gap:8px;
       align-items:center;
       justify-content:center;
-      min-height:80px; /* agar kartu tidak terlalu kecil */
+      min-height:80px;
     }
 
     .product-title{ font-weight:800; text-align:center; font-size:1.1rem; }
@@ -128,6 +130,7 @@
     }
     footer a{ color:var(--green); text-decoration:none; font-weight:700; }
 
+    /* MODAL */
     .modal-backdrop{
       position:fixed; inset:0;
       background:rgba(0,0,0,0.45);
@@ -144,6 +147,7 @@
 
     .variants{
       display:grid; grid-template-columns: repeat(2, 1fr); gap:12px;
+      margin-top:8px;
     }
     .variant{
       padding:12px; border-radius:12px; background:#fff; border:1px solid rgba(2,6,23,0.06);
@@ -160,6 +164,7 @@
 </head>
 <body>
 
+  <!-- HEADER / LOGO -->
   <header>
     <img src="https://autoresbot.com/tmp_files/d184c87a-84ad-4503-84f1-d029310851e2.jpg" alt="IPUNGG SHOP">
   </header>
@@ -169,36 +174,71 @@
     <!-- HOSTING: kiri-kanan -->
     <div class="section-title">HOSTING</div>
     <div class="hosting-row">
+      <!-- PANEL 🖥️ -->
       <div class="product-card" id="panelCard">
         <div class="product-title">PANEL 🖥️</div>
         <div class="desc">Mulai dari <span class="product-sub">Rp1.000</span></div>
         <div class="row">
           <button class="btn btn-ghost" id="openPanelBtn">Lihat Varian</button>
-          <a class="btn btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20mau%20tanya%20tentang%20PANEL" target="_blank">Chat via WhatsApp</a>
+          <a class="btn btn-wa" href="#" target="_blank">Chat via WhatsApp</a>
         </div>
       </div>
-
+      <!-- RENAME SCRIPT 🖨️ -->
       <div class="product-card">
         <div class="product-title">RENAME SCRIPT 🖨️</div>
         <div class="desc"><span class="product-sub">Rp10.000</span></div>
-        <a class="btn btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20ingin%20beli%20RENAME%20SCRIPT%20(Rp10.000)" target="_blank">Beli Sekarang</a>
+        <a class="btn btn-wa" href="#" target="_blank">Beli Sekarang</a>
       </div>
     </div>
 
     <!-- DESAIN: vertikal -->
     <div class="section-title">DESAIN</div>
     <div class="products-grid">
+      <!-- KARTU NAMA 🎨 -->
       <div class="product-card" id="designCard">
         <div class="product-title">KARTU NAMA 🎨</div>
         <div class="desc">Mulai dari <span class="product-sub">Rp5.000</span></div>
         <div class="row">
           <button class="btn btn-ghost" id="openDesignBtn">Lihat Varian</button>
-          <a class="btn btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20mau%20tanya%20tentang%20KARTU%20NAMA" target="_blank">Chat via WhatsApp</a>
+          <a class="btn btn-wa" href="#" target="_blank">Chat via WhatsApp</a>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- MODAL PANEL -->
+  <div id="modalPanel" class="modal-backdrop">
+    <div class="modal">
+      <h3>Pilih Varian — PANEL 🖥️</h3>
+      <div class="desc">Pilih varian yang ingin dibeli, lalu tekan "Chat via WhatsApp".</div>
+      <div class="variants" id="panelVariants"></div>
+      <div class="modal-footer">
+        <div class="note" id="panelNote">Belum ada varian dipilih</div>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-ghost" id="closePanelBtn">Tutup</button>
+          <a id="panelWaBtn" class="btn btn-wa" href="#" target="_blank">Chat via WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL KARTU NAMA -->
+  <div id="modalDesign" class="modal-backdrop">
+    <div class="modal">
+      <h3>Pilih Varian — KARTU NAMA 🎨</h3>
+      <div class="desc">Pilih varian yang ingin dibeli, lalu tekan "Chat via WhatsApp".</div>
+      <div class="variants" id="designVariants"></div>
+      <div class="modal-footer">
+        <div class="note" id="designNote">Belum ada varian dipilih</div>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-ghost" id="closeDesignBtn">Tutup</button>
+          <a id="designWaBtn" class="btn btn-wa" href="#" target="_blank">Chat via WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
   <footer>
     © 2025 <strong>IPUNGG SHOP</strong> | 📧 <a href="mailto:ipungnotdev@gmail.com">ipungnotdev@gmail.com</a> | 📞 <a href="https://wa.me/6283840810226" target="_blank">6283840810226</a>
   </footer>
@@ -206,7 +246,9 @@
   <script>
     const phone = "6283840810226";
 
-    // PANEL PTERODACTYL
+    function formatRp(n){ return "Rp" + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
+
+    // PANEL 🖥️
     const panelVariants = [
       { name: "2GB RAM", price: 1000 },
       { name: "3GB RAM", price: 2000 },
@@ -219,66 +261,53 @@
       { name: "10GB RAM", price: 9000 },
       { name: "Unlimited RAM", price: 12000 }
     ];
-
     const panelContainer = document.getElementById("panelVariants");
     let panelSelected = 0;
 
-    function formatRp(n){ return "Rp" + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
-
-    panelVariants.forEach((v, i)=>{
-      const btn=document.createElement("button");
-      btn.className="variant"+(i===panelSelected?" selected":"");
-      btn.innerHTML=`<div class="vname">${v.name}</div><div class="vprice">${formatRp(v.price)}</div>`;
-      btn.onclick=()=>selectPanel(i);
-      if(panelContainer) panelContainer.appendChild(btn);
-    });
-
-    const panelModal=document.getElementById("modalPanel");
-    const panelNote=document.getElementById("panelNote");
-    const panelWaBtn=document.getElementById("panelWaBtn");
-    if(document.getElementById("openPanelBtn")) document.getElementById("openPanelBtn").onclick=()=>{panelModal.classList.add("show");updatePanel()};
-    if(document.getElementById("closePanelBtn")) document.getElementById("closePanelBtn").onclick=()=>panelModal.classList.remove("show");
-    if(panelModal) panelModal.onclick=(e)=>{if(e.target===panelModal)panelModal.classList.remove("show");};
-
-    function selectPanel(i){panelSelected=i;updatePanel();}
+    function selectPanel(i){ panelSelected=i; updatePanel(); }
     function updatePanel(){
-      if(!panelContainer) return;
-      document.querySelectorAll("#panelVariants .variant").forEach((el,idx)=>el.classList.toggle("selected",idx===panelSelected));
-      const v=panelVariants[panelSelected];
-      if(panelNote) panelNote.textContent=`${v.name} — ${formatRp(v.price)}`;
-      if(panelWaBtn) panelWaBtn.href=`https://wa.me/${phone}?text=`+encodeURIComponent(`Halo, saya ingin beli PANEL 🖥️ varian ${v.name} (${formatRp(v.price)})`);
+      document.querySelectorAll("#panelVariants .variant").forEach((el,idx)=>el.classList.toggle("selected", idx===panelSelected));
+      const v = panelVariants[panelSelected];
+      document.getElementById("panelNote").textContent = `${v.name} — ${formatRp(v.price)}`;
+      document.getElementById("panelWaBtn").href = `https://wa.me/${phone}?text=` + encodeURIComponent(`Halo, saya ingin beli PANEL 🖥️ varian ${v.name} (${formatRp(v.price)})`);
     }
+    panelVariants.forEach((v,i)=>{
+      const btn = document.createElement("button");
+      btn.className = "variant" + (i===panelSelected?" selected":"");
+      btn.innerHTML = `<div class="vname">${v.name}</div><div class="vprice">${formatRp(v.price)}</div>`;
+      btn.onclick = ()=>selectPanel(i);
+      panelContainer.appendChild(btn);
+    });
+    const panelModal = document.getElementById("modalPanel");
+    document.getElementById("openPanelBtn").onclick = ()=>{ panelModal.classList.add("show"); updatePanel(); };
+    document.getElementById("closePanelBtn").onclick = ()=>panelModal.classList.remove("show");
+    panelModal.onclick = e => { if(e.target===panelModal) panelModal.classList.remove("show"); };
 
-    // DESAIN KARTU NAMA
+    // KARTU NAMA 🎨
     const designVariants = [
       { name: "Biasa", price: 5000 },
       { name: "Premium", price: 10000 }
     ];
-
     const designContainer = document.getElementById("designVariants");
     let designSelected = 0;
-    designVariants.forEach((v,i)=>{
-      const btn=document.createElement("button");
-      btn.className="variant"+(i===designSelected?" selected":"");
-      btn.innerHTML=`<div class="vname">${v.name}</div><div class="vprice">${formatRp(v.price)}</div>`;
-      btn.onclick=()=>selectDesign(i);
-      if(designContainer) designContainer.appendChild(btn);
-    });
-
-    const designModal=document.getElementById("modalDesign");
-    const designNote=document.getElementById("designNote");
-    const designWaBtn=document.getElementById("designWaBtn");
-    if(document.getElementById("openDesignBtn")) document.getElementById("openDesignBtn").onclick=()=>{designModal.classList.add("show");updateDesign();};
-    if(document.getElementById("closeDesignBtn")) document.getElementById("closeDesignBtn").onclick=()=>designModal.classList.remove("show");
-    if(designModal) designModal.onclick=(e)=>{if(e.target===designModal)designModal.classList.remove("show");};
-    function selectDesign(i){designSelected=i;updateDesign();}
+    function selectDesign(i){ designSelected=i; updateDesign(); }
     function updateDesign(){
-      if(!designContainer) return;
-      document.querySelectorAll("#designVariants .variant").forEach((el,idx)=>el.classList.toggle("selected",idx===designSelected));
-      const v=designVariants[designSelected];
-      if(designNote) designNote.textContent=`${v.name} — ${formatRp(v.price)}`;
-      if(designWaBtn) designWaBtn.href=`https://wa.me/${phone}?text=`+encodeURIComponent(`Halo, saya ingin beli KARTU NAMA 🎨 varian ${v.name} (${formatRp(v.price)})`);
+      document.querySelectorAll("#designVariants .variant").forEach((el,idx)=>el.classList.toggle("selected", idx===designSelected));
+      const v = designVariants[designSelected];
+      document.getElementById("designNote").textContent = `${v.name} — ${formatRp(v.price)}`;
+      document.getElementById("designWaBtn").href = `https://wa.me/${phone}?text=` + encodeURIComponent(`Halo, saya ingin beli KARTU NAMA 🎨 varian ${v.name} (${formatRp(v.price)})`);
     }
+    designVariants.forEach((v,i)=>{
+      const btn = document.createElement("button");
+      btn.className = "variant" + (i===designSelected?" selected":"");
+      btn.innerHTML = `<div class="vname">${v.name}</div><div class="vprice">${formatRp(v.price)}</div>`;
+      btn.onclick = ()=>selectDesign(i);
+      designContainer.appendChild(btn);
+    });
+    const designModal = document.getElementById("modalDesign");
+    document.getElementById("openDesignBtn").onclick = ()=>{ designModal.classList.add("show"); updateDesign(); };
+    document.getElementById("closeDesignBtn").onclick = ()=>designModal.classList.remove("show");
+    designModal.onclick = e => { if(e.target===designModal) designModal.classList.remove("show"); };
   </script>
 </body>
-  </html>
+          </html>
