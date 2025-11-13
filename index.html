@@ -27,23 +27,6 @@
       padding:0 16px 40px;
     }
 
-    /* HEADER / banner logo */
-    header{
-      width:100%;
-      max-width:var(--max-width);
-      margin:18px 0;
-      background:#fff;
-      box-shadow: 0 6px 18px rgba(15,23,42,0.04);
-      border-radius:12px;
-      overflow:hidden;
-    }
-    header img{
-      width:100%;
-      height:180px;
-      object-fit:cover;
-      display:block;
-    }
-
     main{
       width:100%;
       max-width:var(--max-width);
@@ -68,12 +51,7 @@
       align-items:center;
       gap:10px;
     }
-    .card img.product{
-      width:100%;
-      border-radius:10px;
-      max-height:160px;
-      object-fit:cover;
-    }
+
     .title{
       font-weight:700;
       font-size:1.05rem;
@@ -190,23 +168,16 @@
 
     /* responsive tweaks */
     @media (max-width:420px){
-      header img{ height:140px }
       .modal{ padding:12px }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER: banner logo (lebar penuh di container) -->
-  <header>
-    <img src="https://autoresbot.com/tmp_files/d184c87a-84ad-4503-84f1-d029310851e2.jpg" alt="IPUNGG SHOP">
-  </header>
-
   <main>
     <div class="grid">
       <!-- Produk: PANEL PTERODACTYL -->
       <div class="card">
-        <img class="product" src="https://autoresbot.com/tmp_files/4da789a7-a19d-4419-ac26-8f38c2cc64e4.jpg" alt="PANEL PTERODACTYL">
         <div class="title">PANEL PTERODACTYL</div>
         <div class="desc">Mulai dari <span class="subtitle">Rp1.000</span></div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
@@ -217,7 +188,6 @@
 
       <!-- Produk lain -->
       <div class="card">
-        <img class="product" src="https://autoresbot.com/tmp_files/ac7437ce-1d12-4054-85a9-79e2653b84fe.jpg" alt="RENAME SCRIPT">
         <div class="title">RENAME SCRIPT</div>
         <div class="desc"><span class="subtitle">Rp10.000</span></div>
         <a class="btn btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20ingin%20beli%20RENAME%20SCRIPT" target="_blank">Beli Sekarang</a>
@@ -231,9 +201,7 @@
       <h3 id="modalTitle">Pilih Varian — PANEL PTERODACTYL</h3>
       <div class="small">Pilih varian yang ingin dibeli. Setelah memilih, tekan "Chat via WhatsApp" untuk memesan.</div>
 
-      <div class="variants" id="variantsList">
-        <!-- variant items akan di-generate oleh JS -->
-      </div>
+      <div class="variants" id="variantsList"></div>
 
       <div class="modal-footer">
         <div class="note" id="selectedNote">Belum ada varian dipilih</div>
@@ -250,7 +218,6 @@
   </footer>
 
   <script>
-    // DATA VARIAN (sesuai instruksi, semua harga sudah dikurangi Rp1.000)
     const variants = [
       { name: "2GB RAM", price: 1000 },
       { name: "3GB RAM", price: 2000 },
@@ -264,18 +231,15 @@
       { name: "Unlimited RAM", price: 12000 }
     ];
 
-    const phone = "6283840810226"; // nomor WA kamu
+    const phone = "6283840810226";
     const productName = "PANEL PTERODACTYL";
 
-    // helper format harga (Rp)
     function formatRp(n){
-      // simple thousand separator with dot
       return "Rp" + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 
-    // build variant list in modal
     const variantsListEl = document.getElementById("variantsList");
-    let selectedIndex = 0; // default pilih index 0 (2GB) to match "mulai dari Rp1.000"
+    let selectedIndex = 0;
 
     variants.forEach((v, i) => {
       const el = document.createElement("button");
@@ -297,7 +261,6 @@
       modalBackdrop.classList.add("show");
       modalBackdrop.setAttribute("aria-hidden","false");
       updateSelectionUI();
-      // focus trap simple
       setTimeout(()=> closeModalBtn.focus(),100);
     }
     function closeModal(){
@@ -321,24 +284,17 @@
     }
 
     function updateSelectionUI(){
-      // update visual selected
       document.querySelectorAll(".variant").forEach((el) => {
         el.classList.toggle("selected", Number(el.getAttribute("data-index")) === selectedIndex);
       });
       const sel = variants[selectedIndex];
       selectedNote.textContent = `${sel.name} — ${formatRp(sel.price)}`;
-      // build wa link with message
       const message = `Halo, saya ingin beli ${productName} varian ${sel.name} (${formatRp(sel.price)})`;
       const waUrl = `https://wa.me/${phone}?text=` + encodeURIComponent(message);
       waCheckoutBtn.setAttribute("href", waUrl);
     }
 
-    // initial UI state
     updateSelectionUI();
-
-    // make "Lihat Varian" open modal and preselect default
-    // also make the card's "Mulai dari Rp1.000" consistent (we set default index 0)
-    // If you want default unselected, set selectedIndex = null and handle accordingly.
   </script>
 </body>
   </html>
