@@ -48,36 +48,38 @@
     }
 
     .section-title{
-      font-size:1.1rem;
+      font-size:1.2rem;
       font-weight:700;
       color:#374151;
-      margin:6px 6px 12px;
+      margin:24px 6px 12px;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom:4px;
     }
 
     .products-grid {
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap:18px;
-      padding: 10px;
+      gap:20px;
+      padding: 12px;
     }
     .product-card{
       background:var(--card);
       border-radius:14px;
-      padding:14px;
+      padding:16px;
       box-shadow: 0 10px 24px rgba(2,6,23,0.04);
       display:flex;
       flex-direction:column;
-      gap:10px;
+      gap:12px;
       align-items:center;
     }
     .product-card img{
       width:100%;
-      max-height:140px;
+      max-height:180px;
       object-fit:cover;
       border-radius:10px;
     }
     .product-title{ font-weight:800; text-align:center; }
-    .product-sub{ color:#10b981; font-weight:800; }
+    .product-sub{ color:#10b981; font-weight:800; font-size:1.05rem; }
     .row{ display:flex; gap:8px; align-items:center; justify-content:center; flex-wrap:wrap; }
 
     .btn{
@@ -146,6 +148,7 @@
     @media (max-width:420px){
       header img{ height:140px }
       .variants{ grid-template-columns: 1fr; }
+      .product-card img{ max-height:140px; }
     }
   </style>
 </head>
@@ -156,9 +159,10 @@
   </header>
 
   <div class="container">
-    <div class="section-title">Produk Unggulan</div>
-    <div class="products-grid" aria-label="Produk">
 
+    <!-- Kategori HOSTING -->
+    <div class="section-title">HOSTING</div>
+    <div class="products-grid">
       <!-- PANEL PTERODACTYL -->
       <div class="product-card" id="panelCard">
         <img src="https://autoresbot.com/tmp_files/4da789a7-a19d-4419-ac26-8f38c2cc64e4.jpg" alt="PANEL PTERODACTYL">
@@ -177,11 +181,15 @@
         <div class="desc"><span class="product-sub">Rp10.000</span></div>
         <a class="btn btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20ingin%20beli%20RENAME%20SCRIPT%20(Rp10.000)" target="_blank">Beli Sekarang</a>
       </div>
+    </div>
 
-      <!-- DESAIN KARTU NAMA -->
+    <!-- Kategori DESAIN -->
+    <div class="section-title">DESAIN</div>
+    <div class="products-grid">
+      <!-- KARTU NAMA -->
       <div class="product-card" id="designCard">
         <img src="https://autoresbot.com/tmp_files/71075f80-c1e1-4c70-82cc-c8f6b295eff7.jpg" alt="DESAIN KARTU NAMA">
-        <div class="product-title">DESAIN KARTU NAMA</div>
+        <div class="product-title">KARTU NAMA</div>
         <div class="desc">Mulai dari <span class="product-sub">Rp5.000</span></div>
         <div class="row">
           <button class="btn btn-ghost" id="openDesignBtn">Lihat Varian</button>
@@ -191,7 +199,7 @@
     </div>
   </div>
 
-  <!-- Modal 1: PANEL PTERODACTYL -->
+  <!-- Modal PANEL PTERODACTYL -->
   <div id="modalPanel" class="modal-backdrop">
     <div class="modal">
       <h3>Pilih Varian — PANEL PTERODACTYL</h3>
@@ -207,7 +215,7 @@
     </div>
   </div>
 
-  <!-- Modal 2: DESAIN KARTU NAMA -->
+  <!-- Modal DESAIN KARTU NAMA -->
   <div id="modalDesign" class="modal-backdrop">
     <div class="modal">
       <h3>Pilih Varian — DESAIN KARTU NAMA</h3>
@@ -224,7 +232,7 @@
   </div>
 
   <footer>
-    © 2025 <strong>1 IPUNGG SHOP</strong> | 📧 <a href="mailto:saefulgg84@gmail.com">saefulgg84@gmail.com</a> | 📞 <a href="https://wa.me/6283840810226" target="_blank">6283840810226</a>
+    © 2025 <strong>IPUNGG SHOP</strong> | 📧 <a href="mailto:saefulgg84@gmail.com">saefulgg84@gmail.com</a> | 📞 <a href="https://wa.me/6283840810226" target="_blank">6283840810226</a>
   </footer>
 
   <script>
@@ -243,12 +251,9 @@
       { name: "10GB RAM", price: 9000 },
       { name: "Unlimited RAM", price: 12000 }
     ];
-
     const panelContainer = document.getElementById("panelVariants");
     let panelSelected = 0;
-
     function formatRp(n){ return "Rp" + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
-
     panelVariants.forEach((v, i)=>{
       const btn=document.createElement("button");
       btn.className="variant"+(i===panelSelected?" selected":"");
@@ -256,14 +261,12 @@
       btn.onclick=()=>selectPanel(i);
       panelContainer.appendChild(btn);
     });
-
     const panelModal=document.getElementById("modalPanel");
     const panelNote=document.getElementById("panelNote");
     const panelWaBtn=document.getElementById("panelWaBtn");
     document.getElementById("openPanelBtn").onclick=()=>{panelModal.classList.add("show");updatePanel()};
     document.getElementById("closePanelBtn").onclick=()=>panelModal.classList.remove("show");
     panelModal.onclick=(e)=>{if(e.target===panelModal)panelModal.classList.remove("show");};
-
     function selectPanel(i){panelSelected=i;updatePanel();}
     function updatePanel(){
       document.querySelectorAll("#panelVariants .variant").forEach((el,idx)=>el.classList.toggle("selected",idx===panelSelected));
@@ -278,7 +281,6 @@
       { name: "Biasa", price: 5000 },
       { name: "Premium", price: 10000 }
     ];
-
     const designContainer = document.getElementById("designVariants");
     let designSelected = 0;
     designVariants.forEach((v,i)=>{
@@ -288,14 +290,12 @@
       btn.onclick=()=>selectDesign(i);
       designContainer.appendChild(btn);
     });
-
     const designModal=document.getElementById("modalDesign");
     const designNote=document.getElementById("designNote");
     const designWaBtn=document.getElementById("designWaBtn");
     document.getElementById("openDesignBtn").onclick=()=>{designModal.classList.add("show");updateDesign();};
     document.getElementById("closeDesignBtn").onclick=()=>designModal.classList.remove("show");
     designModal.onclick=(e)=>{if(e.target===designModal)designModal.classList.remove("show");};
-
     function selectDesign(i){designSelected=i;updateDesign();}
     function updateDesign(){
       document.querySelectorAll("#designVariants .variant").forEach((el,idx)=>el.classList.toggle("selected",idx===designSelected));
