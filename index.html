@@ -27,6 +27,23 @@
       padding:0 16px 40px;
     }
 
+    /* HEADER / logo banner */
+    header{
+      width:100%;
+      max-width:var(--max-width);
+      margin:18px 0;
+      background:#fff;
+      box-shadow: 0 6px 18px rgba(15,23,42,0.04);
+      border-radius:12px;
+      overflow:hidden;
+    }
+    header img{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      display:block;
+    }
+
     main{
       width:100%;
       max-width:var(--max-width);
@@ -166,13 +183,18 @@
     }
     .note{ font-size:0.9rem;color:var(--muted) }
 
-    /* responsive tweaks */
     @media (max-width:420px){
+      header img{ height:140px }
       .modal{ padding:12px }
     }
   </style>
 </head>
 <body>
+
+  <!-- HEADER: banner/logo baru -->
+  <header>
+    <img src="https://autoresbot.com/tmp_files/cea879a0-452d-45de-aa09-b7b631131d75.jpg" alt="IPUNGG SHOP">
+  </header>
 
   <main>
     <div class="grid">
@@ -297,4 +319,4 @@
     updateSelectionUI();
   </script>
 </body>
-  </html>
+          </html>
