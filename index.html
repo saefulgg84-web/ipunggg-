@@ -11,15 +11,22 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      padding: 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 900px;
     }
     .card {
       background: #fff;
       border-radius: 20px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       overflow: hidden;
-      width: 300px;
       text-align: center;
       transition: transform 0.2s ease;
     }
@@ -58,13 +65,24 @@
   </style>
 </head>
 <body>
-  <div class="card">
-    <img src="https://autoresbot.com/tmp_files/4da789a7-a19d-4419-ac26-8f38c2cc64e4.jpg" alt="PANEL 1 GB - UNLIMITED">
-    <h2>PANEL 1 GB - UNLIMITED</h2>
-    <p>Rp10.000</p>
-    <a class="btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20ingin%20beli%20PANEL%201GB%20-%20UNLIMITED" target="_blank">
-      Beli Sekarang
-    </a>
+  <div class="grid">
+    <div class="card">
+      <img src="https://autoresbot.com/tmp_files/4da789a7-a19d-4419-ac26-8f38c2cc64e4.jpg" alt="PANEL 1 GB - UNLIMITED">
+      <h2>PANEL 1 GB - UNLIMITED</h2>
+      <p>Rp10.000</p>
+      <a class="btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20ingin%20beli%20PANEL%201GB%20-%20UNLIMITED" target="_blank">
+        Beli Sekarang
+      </a>
+    </div>
+
+    <div class="card">
+      <img src="https://autoresbot.com/tmp_files/ac7437ce-1d12-4054-85a9-79e2653b84fe.jpg" alt="PRODUK 2">
+      <h2>RINAME SCRIP</h2>
+      <p>Rp10.000</p>
+      <a class="btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20ingin%20beli%20PRODUK%202" target="_blank">
+        Beli Sekarang
+      </a>
+    </div>
   </div>
 </body>
-</html>
+        </html>
