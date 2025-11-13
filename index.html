@@ -170,16 +170,16 @@
     <div class="section-title">HOSTING</div>
     <div class="hosting-row">
       <div class="product-card" id="panelCard">
-        <div class="product-title">PANEL PTERODACTYL</div>
+        <div class="product-title">PANEL 🖥️</div>
         <div class="desc">Mulai dari <span class="product-sub">Rp1.000</span></div>
         <div class="row">
           <button class="btn btn-ghost" id="openPanelBtn">Lihat Varian</button>
-          <a class="btn btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20mau%20tanya%20tentang%20PANEL%20PTERODACTYL" target="_blank">Chat via WhatsApp</a>
+          <a class="btn btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20mau%20tanya%20tentang%20PANEL" target="_blank">Chat via WhatsApp</a>
         </div>
       </div>
 
       <div class="product-card">
-        <div class="product-title">RENAME SCRIPT</div>
+        <div class="product-title">RENAME SCRIPT 🖨️</div>
         <div class="desc"><span class="product-sub">Rp10.000</span></div>
         <a class="btn btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20ingin%20beli%20RENAME%20SCRIPT%20(Rp10.000)" target="_blank">Beli Sekarang</a>
       </div>
@@ -189,11 +189,11 @@
     <div class="section-title">DESAIN</div>
     <div class="products-grid">
       <div class="product-card" id="designCard">
-        <div class="product-title">KARTU NAMA</div>
+        <div class="product-title">KARTU NAMA 🎨</div>
         <div class="desc">Mulai dari <span class="product-sub">Rp5.000</span></div>
         <div class="row">
           <button class="btn btn-ghost" id="openDesignBtn">Lihat Varian</button>
-          <a class="btn btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20mau%20tanya%20tentang%20DESAIN%20KARTU%20NAMA" target="_blank">Chat via WhatsApp</a>
+          <a class="btn btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20mau%20tanya%20tentang%20KARTU%20NAMA" target="_blank">Chat via WhatsApp</a>
         </div>
       </div>
     </div>
@@ -246,7 +246,7 @@
       document.querySelectorAll("#panelVariants .variant").forEach((el,idx)=>el.classList.toggle("selected",idx===panelSelected));
       const v=panelVariants[panelSelected];
       if(panelNote) panelNote.textContent=`${v.name} — ${formatRp(v.price)}`;
-      if(panelWaBtn) panelWaBtn.href=`https://wa.me/${phone}?text=`+encodeURIComponent(`Halo, saya ingin beli PANEL PTERODACTYL varian ${v.name} (${formatRp(v.price)})`);
+      if(panelWaBtn) panelWaBtn.href=`https://wa.me/${phone}?text=`+encodeURIComponent(`Halo, saya ingin beli PANEL 🖥️ varian ${v.name} (${formatRp(v.price)})`);
     }
 
     // DESAIN KARTU NAMA
@@ -277,7 +277,7 @@
       document.querySelectorAll("#designVariants .variant").forEach((el,idx)=>el.classList.toggle("selected",idx===designSelected));
       const v=designVariants[designSelected];
       if(designNote) designNote.textContent=`${v.name} — ${formatRp(v.price)}`;
-      if(designWaBtn) designWaBtn.href=`https://wa.me/${phone}?text=`+encodeURIComponent(`Halo, saya ingin beli DESAIN KARTU NAMA varian ${v.name} (${formatRp(v.price)})`);
+      if(designWaBtn) designWaBtn.href=`https://wa.me/${phone}?text=`+encodeURIComponent(`Halo, saya ingin beli KARTU NAMA 🎨 varian ${v.name} (${formatRp(v.price)})`);
     }
   </script>
 </body>
