@@ -6,33 +6,36 @@
   <title>IPUNGG SHOP — Katalog Produk</title>
   <style>
     :root{
-      --bg:#f6f8fb;
+      --bg:#f9fafb;
       --card:#ffffff;
-      --muted:#9ca3af;
-      --accent:#111827;
-      --green:#25D366;
+      --muted:#6b7280;
+      --accent:#10b981;
+      --wa:#25D366;
+      --wa-dark:#1EBE5A;
       --max-width:980px;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       background:var(--bg);
-      color:var(--accent);
+      color:#111827;
       display:flex;
       flex-direction:column;
       align-items:center;
-      padding-bottom:40px;
+      min-height:100vh;
+      padding:0 16px 40px;
     }
 
+    /* HEADER / banner logo */
     header{
       width:100%;
       max-width:var(--max-width);
-      margin:18px 12px;
-      background:var(--card);
+      margin:18px 0;
+      background:#fff;
+      box-shadow: 0 6px 18px rgba(15,23,42,0.04);
       border-radius:12px;
       overflow:hidden;
-      box-shadow: 0 8px 24px rgba(2,6,23,0.06);
     }
     header img{
       width:100%;
@@ -41,197 +44,214 @@
       display:block;
     }
 
-    .container{
+    main{
       width:100%;
       max-width:var(--max-width);
-      margin:18px 12px;
+      margin-top:20px;
     }
 
-    .section-title{
-      font-size:1.1rem;
-      font-weight:700;
-      color:#374151;
-      margin:6px 6px 12px;
-    }
-
-    .products-grid {
+    /* Grid untuk produk */
+    .grid{
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap:18px;
-      padding: 10px;
+      padding: 20px;
     }
-    .product-card{
+
+    .card{
       background:var(--card);
       border-radius:14px;
       padding:14px;
-      box-shadow: 0 10px 24px rgba(2,6,23,0.04);
+      box-shadow: 0 6px 18px rgba(15,23,42,0.04);
       display:flex;
       flex-direction:column;
-      gap:10px;
       align-items:center;
+      gap:10px;
     }
-    .product-card img{
+    .card img.product{
       width:100%;
-      max-height:140px;
+      border-radius:10px;
+      max-height:160px;
       object-fit:cover;
-      border-radius:10px;
     }
-    .product-title{ font-weight:800; text-align:center; }
-    .product-sub{ color:#10b981; font-weight:800; }
-    .row{ display:flex; gap:8px; align-items:center; justify-content:center; flex-wrap:wrap; }
+    .title{
+      font-weight:700;
+      font-size:1.05rem;
+      text-align:center;
+    }
+    .subtitle{
+      font-size:0.95rem;
+      color:var(--accent);
+      font-weight:700;
+    }
+    .desc{
+      font-size:0.9rem;
+      color:var(--muted);
+      text-align:center;
+      margin:6px 0 10px;
+    }
 
+    /* Tombol utama */
     .btn{
-      padding:10px 14px;
-      border-radius:10px;
-      font-weight:800;
-      border:0;
-      cursor:pointer;
-      text-decoration:none;
       display:inline-flex;
       align-items:center;
       justify-content:center;
+      padding:10px 14px;
+      border-radius:10px;
+      border:0;
+      cursor:pointer;
+      font-weight:700;
+      text-decoration:none;
     }
     .btn-ghost{
       background:transparent;
-      border:1px solid rgba(2,6,23,0.06);
-      color:var(--accent);
+      color:#111827;
+      border:1px solid rgba(0,0,0,0.06);
     }
     .btn-wa{
-      background:var(--green);
+      background:var(--wa);
       color:#fff;
     }
+    .btn-wa:hover{ background:var(--wa-dark) }
 
+    /* Footer */
     footer{
       margin-top:26px;
       width:100%;
       max-width:var(--max-width);
-      padding:12px;
-      background:var(--card);
+      padding:14px;
+      background:#fff;
       border-radius:12px;
-      box-shadow: 0 8px 22px rgba(2,6,23,0.04);
+      box-shadow: 0 6px 18px rgba(15,23,42,0.04);
       text-align:center;
       color:var(--muted);
       font-size:0.95rem;
     }
-    footer a{ color:var(--green); text-decoration:none; font-weight:700; }
+    footer a{ color:var(--accent); text-decoration:none; font-weight:600; }
 
+    /* Modal (popup varian) */
     .modal-backdrop{
-      position:fixed; inset:0;
+      position:fixed;
+      inset:0;
       background:rgba(0,0,0,0.45);
-      display:flex; align-items:center; justify-content:center;
-      z-index:80; opacity:0; pointer-events:none; transition:opacity .15s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:60;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .18s ease;
     }
-    .modal-backdrop.show{ opacity:1; pointer-events:auto }
+    .modal-backdrop.show{
+      opacity:1;
+      pointer-events:auto;
+    }
     .modal{
-      width:94%; max-width:560px; background:var(--card); border-radius:14px; padding:18px;
-      box-shadow:0 18px 48px rgba(2,6,23,0.3);
+      width:94%;
+      max-width:520px;
+      background:var(--card);
+      border-radius:12px;
+      padding:18px;
+      box-shadow: 0 12px 30px rgba(2,6,23,0.2);
     }
-    .modal h3{ margin:0 0 8px }
-    .modal .desc{ color:var(--muted); margin-bottom:12px }
+    .modal h3{ margin:0 0 8px; font-size:1.05rem }
+    .modal .small { color:var(--muted); font-size:0.9rem; margin-bottom:12px }
 
     .variants{
-      display:grid; grid-template-columns: repeat(2, 1fr); gap:12px;
+      display:grid;
+      gap:10px;
+      margin-bottom:14px;
     }
     .variant{
-      padding:14px; border-radius:12px; background:#fff; border:1px solid rgba(2,6,23,0.06);
-      cursor:pointer; display:flex; flex-direction:column; gap:8px; align-items:flex-start;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid rgba(15,23,42,0.06);
+      cursor:pointer;
+      background:linear-gradient(180deg, rgba(255,255,255,1), rgba(250,250,250,1));
     }
-    .variant.selected{ border-color: #10b981; box-shadow:0 10px 30px rgba(16,185,129,0.06) }
-    .variant .vname{ font-weight:700 }
-    .variant .vprice{ color:#10b981; font-weight:800 }
+    .variant.selected{
+      border:1px solid var(--accent);
+      box-shadow:0 6px 18px rgba(16,185,129,0.08);
+    }
+    .variant .name{ font-weight:600 }
+    .variant .price{ color:var(--accent); font-weight:800 }
 
-    .modal-footer{ display:flex; gap:10px; justify-content:space-between; align-items:center; margin-top:14px }
-    .note{ color:var(--muted) }
+    .modal-footer{
+      display:flex;
+      gap:10px;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:8px;
+    }
+    .note{ font-size:0.9rem;color:var(--muted) }
 
+    /* responsive tweaks */
     @media (max-width:420px){
       header img{ height:140px }
-      .variants{ grid-template-columns: 1fr; }
+      .modal{ padding:12px }
     }
   </style>
 </head>
 <body>
 
+  <!-- HEADER: banner logo (lebar penuh di container) -->
   <header>
     <img src="https://autoresbot.com/tmp_files/d184c87a-84ad-4503-84f1-d029310851e2.jpg" alt="IPUNGG SHOP">
   </header>
 
-  <div class="container">
-    <div class="section-title">Produk Unggulan</div>
-    <div class="products-grid" aria-label="Produk">
-
-      <!-- PANEL PTERODACTYL -->
-      <div class="product-card" id="panelCard">
-        <img src="https://autoresbot.com/tmp_files/4da789a7-a19d-4419-ac26-8f38c2cc64e4.jpg" alt="PANEL PTERODACTYL">
-        <div class="product-title">PANEL PTERODACTYL</div>
-        <div class="desc">Mulai dari <span class="product-sub">Rp1.000</span></div>
-        <div class="row">
-          <button class="btn btn-ghost" id="openPanelBtn">Lihat Varian</button>
+  <main>
+    <div class="grid">
+      <!-- Produk: PANEL PTERODACTYL -->
+      <div class="card">
+        <img class="product" src="https://autoresbot.com/tmp_files/4da789a7-a19d-4419-ac26-8f38c2cc64e4.jpg" alt="PANEL PTERODACTYL">
+        <div class="title">PANEL PTERODACTYL</div>
+        <div class="desc">Mulai dari <span class="subtitle">Rp1.000</span></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
+          <button class="btn btn-ghost" id="openVariantsBtn">Lihat Varian</button>
           <a class="btn btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20mau%20tanya%20tentang%20PANEL%20PTERODACTYL" target="_blank">Chat via WhatsApp</a>
         </div>
       </div>
 
-      <!-- RENAME SCRIPT -->
-      <div class="product-card">
-        <img src="https://autoresbot.com/tmp_files/ac7437ce-1d12-4054-85a9-79e2653b84fe.jpg" alt="RENAME SCRIPT">
-        <div class="product-title">RENAME SCRIPT</div>
-        <div class="desc"><span class="product-sub">Rp10.000</span></div>
-        <a class="btn btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20ingin%20beli%20RENAME%20SCRIPT%20(Rp10.000)" target="_blank">Beli Sekarang</a>
-      </div>
-
-      <!-- DESAIN KARTU NAMA -->
-      <div class="product-card" id="designCard">
-        <img src="https://autoresbot.com/tmp_files/71075f80-c1e1-4c70-82cc-c8f6b295eff7.jpg" alt="DESAIN KARTU NAMA">
-        <div class="product-title">DESAIN KARTU NAMA</div>
-        <div class="desc">Mulai dari <span class="product-sub">Rp5.000</span></div>
-        <div class="row">
-          <button class="btn btn-ghost" id="openDesignBtn">Lihat Varian</button>
-          <a class="btn btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20mau%20tanya%20tentang%20DESAIN%20KARTU%20NAMA" target="_blank">Chat via WhatsApp</a>
-        </div>
+      <!-- Produk lain -->
+      <div class="card">
+        <img class="product" src="https://autoresbot.com/tmp_files/ac7437ce-1d12-4054-85a9-79e2653b84fe.jpg" alt="RENAME SCRIPT">
+        <div class="title">RENAME SCRIPT</div>
+        <div class="desc"><span class="subtitle">Rp10.000</span></div>
+        <a class="btn btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20ingin%20beli%20RENAME%20SCRIPT" target="_blank">Beli Sekarang</a>
       </div>
     </div>
-  </div>
+  </main>
 
-  <!-- Modal 1: PANEL PTERODACTYL -->
-  <div id="modalPanel" class="modal-backdrop">
-    <div class="modal">
-      <h3>Pilih Varian — PANEL PTERODACTYL</h3>
-      <div class="desc">Pilih varian yang ingin dibeli, lalu tekan "Chat via WhatsApp".</div>
-      <div class="variants" id="panelVariants"></div>
-      <div class="modal-footer">
-        <div class="note" id="panelNote">Belum ada varian dipilih</div>
-        <div style="display:flex;gap:8px;">
-          <button class="btn btn-ghost" id="closePanelBtn">Tutup</button>
-          <a id="panelWaBtn" class="btn btn-wa" href="#" target="_blank">Chat via WhatsApp</a>
-        </div>
+  <!-- Modal untuk memilih varian -->
+  <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal" role="document" aria-labelledby="modalTitle">
+      <h3 id="modalTitle">Pilih Varian — PANEL PTERODACTYL</h3>
+      <div class="small">Pilih varian yang ingin dibeli. Setelah memilih, tekan "Chat via WhatsApp" untuk memesan.</div>
+
+      <div class="variants" id="variantsList">
+        <!-- variant items akan di-generate oleh JS -->
       </div>
-    </div>
-  </div>
 
-  <!-- Modal 2: DESAIN KARTU NAMA -->
-  <div id="modalDesign" class="modal-backdrop">
-    <div class="modal">
-      <h3>Pilih Varian — DESAIN KARTU NAMA</h3>
-      <div class="desc">Pilih varian yang ingin dibeli, lalu tekan "Chat via WhatsApp".</div>
-      <div class="variants" id="designVariants"></div>
       <div class="modal-footer">
-        <div class="note" id="designNote">Belum ada varian dipilih</div>
+        <div class="note" id="selectedNote">Belum ada varian dipilih</div>
         <div style="display:flex;gap:8px;">
-          <button class="btn btn-ghost" id="closeDesignBtn">Tutup</button>
-          <a id="designWaBtn" class="btn btn-wa" href="#" target="_blank">Chat via WhatsApp</a>
+          <button class="btn btn-ghost" id="closeModalBtn">Tutup</button>
+          <a id="waCheckoutBtn" class="btn btn-wa" href="#" target="_blank" rel="noopener">Chat via WhatsApp</a>
         </div>
       </div>
     </div>
   </div>
 
   <footer>
-    © 2025 <strong> IPUNGG SHOP</strong> | 📧 <a href="mailto:ipungnotdev@gmail.com"></a> | 📞 <a href="https://wa.me/6283840810226" target="_blank">6283840810226</a>
+    © 2025 <strong>IPUNGG SHOP</strong> | 📧 <a href="mailto: ipungnotdev@gmail.com">ipungnotdev@gmail.com</a> | 📞 <a href="https://wa.me/6283840810226" target="_blank">6283840810226</a>
   </footer>
 
   <script>
-    const phone = "6283840810226";
-
-    // PANEL PTERODACTYL
-    const panelVariants = [
+    // DATA VARIAN (sesuai instruksi, semua harga sudah dikurangi Rp1.000)
+    const variants = [
       { name: "2GB RAM", price: 1000 },
       { name: "3GB RAM", price: 2000 },
       { name: "4GB RAM", price: 3000 },
@@ -244,66 +264,81 @@
       { name: "Unlimited RAM", price: 12000 }
     ];
 
-    const panelContainer = document.getElementById("panelVariants");
-    let panelSelected = 0;
+    const phone = "6283840810226"; // nomor WA kamu
+    const productName = "PANEL PTERODACTYL";
 
-    function formatRp(n){ return "Rp" + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
-
-    panelVariants.forEach((v, i)=>{
-      const btn=document.createElement("button");
-      btn.className="variant"+(i===panelSelected?" selected":"");
-      btn.innerHTML=`<div class="vname">${v.name}</div><div class="vprice">${formatRp(v.price)}</div>`;
-      btn.onclick=()=>selectPanel(i);
-      panelContainer.appendChild(btn);
-    });
-
-    const panelModal=document.getElementById("modalPanel");
-    const panelNote=document.getElementById("panelNote");
-    const panelWaBtn=document.getElementById("panelWaBtn");
-    document.getElementById("openPanelBtn").onclick=()=>{panelModal.classList.add("show");updatePanel()};
-    document.getElementById("closePanelBtn").onclick=()=>panelModal.classList.remove("show");
-    panelModal.onclick=(e)=>{if(e.target===panelModal)panelModal.classList.remove("show");};
-
-    function selectPanel(i){panelSelected=i;updatePanel();}
-    function updatePanel(){
-      document.querySelectorAll("#panelVariants .variant").forEach((el,idx)=>el.classList.toggle("selected",idx===panelSelected));
-      const v=panelVariants[panelSelected];
-      panelNote.textContent=`${v.name} — ${formatRp(v.price)}`;
-      const msg=`Halo, saya ingin beli PANEL PTERODACTYL varian ${v.name} (${formatRp(v.price)})`;
-      panelWaBtn.href=`https://wa.me/${phone}?text=`+encodeURIComponent(msg);
+    // helper format harga (Rp)
+    function formatRp(n){
+      // simple thousand separator with dot
+      return "Rp" + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 
-    // DESAIN KARTU NAMA
-    const designVariants = [
-      { name: "Biasa", price: 5000 },
-      { name: "Premium", price: 10000 }
-    ];
+    // build variant list in modal
+    const variantsListEl = document.getElementById("variantsList");
+    let selectedIndex = 0; // default pilih index 0 (2GB) to match "mulai dari Rp1.000"
 
-    const designContainer = document.getElementById("designVariants");
-    let designSelected = 0;
-    designVariants.forEach((v,i)=>{
-      const btn=document.createElement("button");
-      btn.className="variant"+(i===designSelected?" selected":"");
-      btn.innerHTML=`<div class="vname">${v.name}</div><div class="vprice">${formatRp(v.price)}</div>`;
-      btn.onclick=()=>selectDesign(i);
-      designContainer.appendChild(btn);
+    variants.forEach((v, i) => {
+      const el = document.createElement("button");
+      el.type = "button";
+      el.className = "variant" + (i === selectedIndex ? " selected" : "");
+      el.setAttribute("data-index", i);
+      el.innerHTML = `<div class="name">${v.name}</div><div class="price">${formatRp(v.price)}</div>`;
+      el.addEventListener("click", () => selectVariant(i));
+      variantsListEl.appendChild(el);
     });
 
-    const designModal=document.getElementById("modalDesign");
-    const designNote=document.getElementById("designNote");
-    const designWaBtn=document.getElementById("designWaBtn");
-    document.getElementById("openDesignBtn").onclick=()=>{designModal.classList.add("show");updateDesign();};
-    document.getElementById("closeDesignBtn").onclick=()=>designModal.classList.remove("show");
-    designModal.onclick=(e)=>{if(e.target===designModal)designModal.classList.remove("show");};
+    const modalBackdrop = document.getElementById("modalBackdrop");
+    const openVariantsBtn = document.getElementById("openVariantsBtn");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+    const waCheckoutBtn = document.getElementById("waCheckoutBtn");
+    const selectedNote = document.getElementById("selectedNote");
 
-    function selectDesign(i){designSelected=i;updateDesign();}
-    function updateDesign(){
-      document.querySelectorAll("#designVariants .variant").forEach((el,idx)=>el.classList.toggle("selected",idx===designSelected));
-      const v=designVariants[designSelected];
-      designNote.textContent=`${v.name} — ${formatRp(v.price)}`;
-      const msg=`Halo, saya ingin beli DESAIN KARTU NAMA varian ${v.name} (${formatRp(v.price)})`;
-      designWaBtn.href=`https://wa.me/${phone}?text=`+encodeURIComponent(msg);
+    function openModal(){
+      modalBackdrop.classList.add("show");
+      modalBackdrop.setAttribute("aria-hidden","false");
+      updateSelectionUI();
+      // focus trap simple
+      setTimeout(()=> closeModalBtn.focus(),100);
     }
+    function closeModal(){
+      modalBackdrop.classList.remove("show");
+      modalBackdrop.setAttribute("aria-hidden","true");
+      openVariantsBtn.focus();
+    }
+
+    openVariantsBtn.addEventListener("click", openModal);
+    closeModalBtn.addEventListener("click", closeModal);
+    modalBackdrop.addEventListener("click", (e) => {
+      if(e.target === modalBackdrop) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape") closeModal();
+    });
+
+    function selectVariant(index){
+      selectedIndex = index;
+      updateSelectionUI();
+    }
+
+    function updateSelectionUI(){
+      // update visual selected
+      document.querySelectorAll(".variant").forEach((el) => {
+        el.classList.toggle("selected", Number(el.getAttribute("data-index")) === selectedIndex);
+      });
+      const sel = variants[selectedIndex];
+      selectedNote.textContent = `${sel.name} — ${formatRp(sel.price)}`;
+      // build wa link with message
+      const message = `Halo, saya ingin beli ${productName} varian ${sel.name} (${formatRp(sel.price)})`;
+      const waUrl = `https://wa.me/${phone}?text=` + encodeURIComponent(message);
+      waCheckoutBtn.setAttribute("href", waUrl);
+    }
+
+    // initial UI state
+    updateSelectionUI();
+
+    // make "Lihat Varian" open modal and preselect default
+    // also make the card's "Mulai dari Rp1.000" consistent (we set default index 0)
+    // If you want default unselected, set selectedIndex = null and handle accordingly.
   </script>
 </body>
-                                                                               </html>
+  </html>
