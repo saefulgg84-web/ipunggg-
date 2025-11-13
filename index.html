@@ -56,12 +56,24 @@
       padding-bottom:4px;
     }
 
+    /* HOSTING ROW */
+    .hosting-row{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+    .hosting-row .product-card{
+      flex:1;
+      min-width:240px;
+    }
+
     .products-grid {
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap:20px;
-      padding: 12px;
+      padding: 12px 0;
     }
+
     .product-card{
       background:var(--card);
       border-radius:14px;
@@ -149,6 +161,7 @@
       header img{ height:140px }
       .variants{ grid-template-columns: 1fr; }
       .product-card img{ max-height:140px; }
+      .hosting-row{ flex-direction:column; }
     }
   </style>
 </head>
@@ -162,7 +175,7 @@
 
     <!-- Kategori HOSTING -->
     <div class="section-title">HOSTING</div>
-    <div class="products-grid">
+    <div class="hosting-row">
       <!-- PANEL PTERODACTYL -->
       <div class="product-card" id="panelCard">
         <img src="https://autoresbot.com/tmp_files/4da789a7-a19d-4419-ac26-8f38c2cc64e4.jpg" alt="PANEL PTERODACTYL">
@@ -306,4 +319,4 @@
     }
   </script>
 </body>
-  </html>
+            </html>
