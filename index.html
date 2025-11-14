@@ -26,6 +26,21 @@ body{
   min-height:100vh;
   padding:0 16px 40px;
 }
+header{
+  width:100%;
+  max-width:var(--max-width);
+  margin:18px 0;
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(15,23,42,0.04);
+  overflow:hidden;
+}
+header img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  display:block;
+}
 main{
   width:100%;
   max-width:var(--max-width);
@@ -47,7 +62,7 @@ h2{
   background:var(--card);
   border-radius:14px;
   padding:14px;
-  box-shadow: 0 6px 18px rgba(15,23,42,0.04);
+  box-shadow:0 6px 18px rgba(15,23,42,0.04);
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -107,7 +122,7 @@ footer{
   padding:14px;
   background:#fff;
   border-radius:12px;
-  box-shadow: 0 6px 18px rgba(15,23,42,0.04);
+  box-shadow:0 6px 18px rgba(15,23,42,0.04);
   text-align:center;
   color:var(--muted);
   font-size:0.95rem;
@@ -135,7 +150,7 @@ footer a{ color:var(--accent); text-decoration:none; font-weight:600; }
   background:var(--card);
   border-radius:12px;
   padding:18px;
-  box-shadow: 0 12px 30px rgba(2,6,23,0.2);
+  box-shadow:0 12px 30px rgba(2,6,23,0.2);
 }
 .modal h3{ margin:0 0 8px; font-size:1.05rem }
 .modal .small { color:var(--muted); font-size:0.9rem; margin-bottom:12px }
@@ -175,64 +190,67 @@ footer a{ color:var(--accent); text-decoration:none; font-weight:600; }
 </head>
 <body>
 
+<header>
+  <img src="https://autoresbot.com/tmp_files/d9d11a68-9a7b-4225-b5ce-de9154764762.jpg" alt="IPUNGG SHOP">
+</header>
+
 <main>
 
-  <!-- HOSTING -->
-  <h2>HOSTING</h2>
-  <div class="grid">
-    <!-- PANEL PTERODACTYL -->
-    <div class="card" data-product="PANEL PTERODACTYL">
-      <div class="title-with-logo">
-        <img class="product-logo" src="https://autoresbot.com/tmp_files/9b894a9a-e176-4268-96d1-c5718340cf9c.jpg" alt="Logo PANEL PTERODACTYL">
-        <span class="title">PANEL PTERODACTYL</span>
-      </div>
-      <div class="desc">Mulai dari <span class="subtitle">Rp1.000</span></div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
-        <button class="btn btn-ghost">Lihat Varian</button>
-        <a class="btn btn-wa" href="#" target="_blank">Chat via WhatsApp</a>
-      </div>
+<h2>HOSTING</h2>
+<div class="grid">
+  <!-- PANEL PTERODACTYL -->
+  <div class="card" data-product="PANEL PTERODACTYL">
+    <div class="title-with-logo">
+      <img class="product-logo" src="https://autoresbot.com/tmp_files/9b894a9a-e176-4268-96d1-c5718340cf9c.jpg" alt="Logo PANEL PTERODACTYL">
+      <span class="title">PANEL PTERODACTYL</span>
     </div>
-
-    <!-- RENAME SCRIPT -->
-    <div class="card" data-product="RENAME SCRIPT">
-      <div class="title-with-logo">
-        <img class="product-logo" src="https://autoresbot.com/tmp_files/a32b61ea-7ca2-4c24-9752-e89d83dae8de.jpg" alt="Logo RENAME SCRIPT">
-        <span class="title">RENAME SCRIPT</span>
-      </div>
-      <div class="desc"><span class="subtitle">Rp10.000</span></div>
-      <a class="btn btn-wa" href="#" target="_blank">Beli Sekarang</a>
+    <div class="desc">Mulai dari <span class="subtitle">Rp1.000</span></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
+      <button class="btn btn-ghost">Lihat Varian</button>
+      <a class="btn btn-wa" href="#" target="_blank">Chat via WhatsApp</a>
     </div>
   </div>
 
-  <!-- DESAIN -->
-  <h2>DESAIN</h2>
-  <div class="grid">
-    <!-- DESAIN BENNER -->
-    <div class="card" data-product="DESAIN BENNER">
-      <div class="title-with-logo">
-        <img class="product-logo" src="https://autoresbot.com/tmp_files/d2dee100-257a-4d05-9179-d5ba5de7ccae.jpg" alt="Logo DESAIN BENNER">
-        <span class="title">DESAIN BENNER</span>
-      </div>
-      <div class="desc">Mulai dari <span class="subtitle">Rp15.000</span></div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
-        <button class="btn btn-ghost">Lihat Varian</button>
-        <a class="btn btn-wa" href="#" target="_blank">Chat via WhatsApp</a>
-      </div>
+  <!-- RENAME SCRIPT -->
+  <div class="card" data-product="RENAME SCRIPT">
+    <div class="title-with-logo">
+      <img class="product-logo" src="https://autoresbot.com/tmp_files/a32b61ea-7ca2-4c24-9752-e89d83dae8de.jpg" alt="Logo RENAME SCRIPT">
+      <span class="title">RENAME SCRIPT</span>
     </div>
+    <div class="desc"><span class="subtitle">Rp10.000</span></div>
+    <a class="btn btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20ingin%20beli%20RENAME%20SCRIPT" target="_blank">Beli Sekarang</a>
+  </div>
+</div>
 
-    <!-- DISAIN KARTU NAMA -->
-    <div class="card" data-product="DISAIN KARTU NAMA">
-      <div class="title-with-logo">
-        <img class="product-logo" src="https://autoresbot.com/tmp_files/b0f47d9d-4b57-47bf-929c-342a0ba089f5.jpg" alt="Logo DISAIN KARTU NAMA">
-        <span class="title">DISAIN KARTU NAMA</span>
-      </div>
-      <div class="desc">Mulai dari <span class="subtitle">Rp5.000</span></div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
-        <button class="btn btn-ghost">Lihat Varian</button>
-        <a class="btn btn-wa" href="#" target="_blank">Chat via WhatsApp</a>
-      </div>
+<h2>DESAIN</h2>
+<div class="grid">
+  <!-- DESAIN BENNER -->
+  <div class="card" data-product="DESAIN BENNER">
+    <div class="title-with-logo">
+      <img class="product-logo" src="https://autoresbot.com/tmp_files/d2dee100-257a-4d05-9179-d5ba5de7ccae.jpg" alt="Logo DESAIN BENNER">
+      <span class="title">DESAIN BENNER</span>
+    </div>
+    <div class="desc">Mulai dari <span class="subtitle">Rp15.000</span></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
+      <button class="btn btn-ghost">Lihat Varian</button>
+      <a class="btn btn-wa" href="#" target="_blank">Chat via WhatsApp</a>
     </div>
   </div>
+
+  <!-- DISAIN KARTU NAMA -->
+  <div class="card" data-product="DISAIN KARTU NAMA">
+    <div class="title-with-logo">
+      <img class="product-logo" src="https://autoresbot.com/tmp_files/b0f47d9d-4b57-47bf-929c-342a0ba089f5.jpg" alt="Logo DISAIN KARTU NAMA">
+      <span class="title">DISAIN KARTU NAMA</span>
+    </div>
+    <div class="desc">Mulai dari <span class="subtitle">Rp5.000</span></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
+      <button class="btn btn-ghost">Lihat Varian</button>
+      <a class="btn btn-wa" href="#" target="_blank">Chat via WhatsApp</a>
+    </div>
+  </div>
+</div>
+
 </main>
 
 <!-- Modal -->
@@ -252,7 +270,7 @@ footer a{ color:var(--accent); text-decoration:none; font-weight:600; }
 </div>
 
 <footer>
-  © 2025 <strong>IPUNGG SHOP</strong> | 📧 <a href="mailto: ipungnotdev@gmail.com">ipungnotdev@gmail.com</a> | 📞 <a href="https://wa.me/6283840810226" target="_blank">6283840810226</a>
+  © 2025 <strong>IPUNGG SHOP</strong> | 📧 <a href="mailto:ipungnotdev@gmail.com">ipungnotdev@gmail.com</a> | 📞 <a href="https://wa.me/6283840810226" target="_blank">6283840810226</a>
 </footer>
 
 <script>
@@ -288,9 +306,10 @@ document.querySelectorAll(".btn-ghost").forEach(btn=>{
   btn.addEventListener("click", ()=>{
     const card = btn.closest(".card");
     currentProduct = card.dataset.product;
-    currentVariants = products[currentProduct];
-    selectedIndex = 0;
+    currentVariants = products[currentProduct] || [];
+    if(currentVariants.length===0) return;
 
+    selectedIndex = 0;
     modalTitle.textContent = "Pilih Varian — " + currentProduct;
     variantsList.innerHTML = "";
 
@@ -317,7 +336,8 @@ function updateSelectionUI(){
   });
   const sel = currentVariants[selectedIndex];
   selectedNote.textContent = `${sel.name} — Rp${sel.price.toLocaleString()}`;
-  waCheckoutBtn.href = `https://wa.me/6283840810226?text=` + encodeURIComponent(`Halo, saya ingin beli ${currentProduct} varian ${sel.name} (Rp${sel.price.toLocaleString()})`);
+  waCheckoutBtn.href = `https://wa.me/6283840810226?text=` 
+    + encodeURIComponent(`Halo, saya ingin beli ${currentProduct} varian ${sel.name} (Rp${sel.price.toLocaleString()})`);
 }
 
 closeModalBtn.addEventListener("click", ()=>{
@@ -334,4 +354,4 @@ modalBackdrop.addEventListener("click",(e)=>{
 </script>
 
 </body>
-          </html>
+      </html>
