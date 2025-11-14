@@ -27,7 +27,7 @@
       padding:0 16px 40px;
     }
 
-    /* HEADER / logo banner */
+    /* HEADER / banner logo */
     header{
       width:100%;
       max-width:var(--max-width);
@@ -50,7 +50,7 @@
       margin-top:20px;
     }
 
-    /* Grid untuk produk */
+    /* Grid produk */
     .grid{
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -67,6 +67,18 @@
       flex-direction:column;
       align-items:center;
       gap:10px;
+    }
+
+    .title-with-logo {
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .product-logo {
+      width:80px;
+      height:auto;
+      object-fit:contain;
     }
 
     .title{
@@ -86,7 +98,6 @@
       margin:6px 0 10px;
     }
 
-    /* Tombol utama */
     .btn{
       display:inline-flex;
       align-items:center;
@@ -109,7 +120,6 @@
     }
     .btn-wa:hover{ background:var(--wa-dark) }
 
-    /* Footer */
     footer{
       margin-top:26px;
       width:100%;
@@ -124,7 +134,7 @@
     }
     footer a{ color:var(--accent); text-decoration:none; font-weight:600; }
 
-    /* Modal (popup varian) */
+    /* Modal */
     .modal-backdrop{
       position:fixed;
       inset:0;
@@ -147,7 +157,7 @@
       background:var(--card);
       border-radius:12px;
       padding:18px;
-      box-shadow: 0 12px 30px rgba(2,6,23,0.2);
+      box-shadow:0 12px 30px rgba(2,6,23,0.2);
     }
     .modal h3{ margin:0 0 8px; font-size:1.05rem }
     .modal .small { color:var(--muted); font-size:0.9rem; margin-bottom:12px }
@@ -191,16 +201,19 @@
 </head>
 <body>
 
-  <!-- HEADER: banner/logo baru -->
+  <!-- HEADER / banner atas tetap ada -->
   <header>
     <img src="https://autoresbot.com/tmp_files/d9d11a68-9a7b-4225-b5ce-de9154764762.jpg" alt="IPUNGG SHOP">
   </header>
 
   <main>
     <div class="grid">
-      <!-- Produk: PANEL PTERODACTYL -->
+      <!-- PANEL PTERODACTYL -->
       <div class="card">
-        <div class="title">PANEL PTERODACTYL</div>
+        <div class="title-with-logo">
+          <img class="product-logo" src="https://autoresbot.com/tmp_files/9b894a9a-e176-4268-96d1-c5718340cf9c.jpg" alt="Logo PANEL PTERODACTYL">
+          <span class="title">PANEL PTERODACTYL</span>
+        </div>
         <div class="desc">Mulai dari <span class="subtitle">Rp1.000</span></div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
           <button class="btn btn-ghost" id="openVariantsBtn">Lihat Varian</button>
@@ -208,23 +221,24 @@
         </div>
       </div>
 
-      <!-- Produk lain -->
+      <!-- RENAME SCRIPT -->
       <div class="card">
-        <div class="title">RENAME SCRIPT</div>
+        <div class="title-with-logo">
+          <img class="product-logo" src="https://autoresbot.com/tmp_files/a32b61ea-7ca2-4c24-9752-e89d83dae8de.jpg" alt="Logo RENAME SCRIPT">
+          <span class="title">RENAME SCRIPT</span>
+        </div>
         <div class="desc"><span class="subtitle">Rp10.000</span></div>
         <a class="btn btn-wa" href="https://wa.me/6283840810226?text=Halo%20saya%20ingin%20beli%20RENAME%20SCRIPT" target="_blank">Beli Sekarang</a>
       </div>
     </div>
   </main>
 
-  <!-- Modal untuk memilih varian -->
+  <!-- Modal varian -->
   <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal" role="document" aria-labelledby="modalTitle">
       <h3 id="modalTitle">Pilih Varian — PANEL PTERODACTYL</h3>
       <div class="small">Pilih varian yang ingin dibeli. Setelah memilih, tekan "Chat via WhatsApp" untuk memesan.</div>
-
       <div class="variants" id="variantsList"></div>
-
       <div class="modal-footer">
         <div class="note" id="selectedNote">Belum ada varian dipilih</div>
         <div style="display:flex;gap:8px;">
@@ -319,4 +333,4 @@
     updateSelectionUI();
   </script>
 </body>
-          </html>
+  </html>
