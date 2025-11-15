@@ -99,22 +99,16 @@ footer a{color:var(--accent); font-weight:600; text-decoration:none;}
 </head>
 <body>
 
-<!-- =============================================== -->
-<!--              BANNER / HEADER                    -->
-<!-- =============================================== -->
+<!-- BANNER / HEADER -->
 <header>
   <img src="https://autoresbot.com/tmp_files/d9d11a68-9a7b-4225-b5ce-de9154764762.jpg">
 </header>
 
-
-<!-- ===================================================== -->
-<!-- ==============  HOSTING CATEGORY  ===================== -->
-<!-- ===================================================== -->
+<!-- CATEGORY HOSTING -->
 <div class="category">
   <h2>HOSTING</h2>
   <div class="grid">
 
-    <!-- SEWA BOT -->
     <div class="card" data-product="SEWA BOT" data-logo="https://autoresbot.com/tmp_files/f17e03f2-6c9f-42e4-93a5-d11a5372d265.jpg">
       <div class="title-with-logo">
         <img class="product-logo" src="https://autoresbot.com/tmp_files/f17e03f2-6c9f-42e4-93a5-d11a5372d265.jpg">
@@ -124,7 +118,6 @@ footer a{color:var(--accent); font-weight:600; text-decoration:none;}
       <button class="btn btn-ghost openModalBtn">Lihat Varian</button>
     </div>
 
-    <!-- PANEL -->
     <div class="card" data-product="PANEL PTERODACTYL" data-logo="https://autoresbot.com/tmp_files/9b894a9a-e176-4268-96d1-c5718340cf9c.jpg">
       <div class="title-with-logo">
         <img class="product-logo" src="https://autoresbot.com/tmp_files/9b894a9a-e176-4268-96d1-c5718340cf9c.jpg">
@@ -134,7 +127,6 @@ footer a{color:var(--accent); font-weight:600; text-decoration:none;}
       <button class="btn btn-ghost openModalBtn">Lihat Varian</button>
     </div>
 
-    <!-- RENAME SCRIPT -->
     <div class="card" data-product="RENAME SCRIPT" data-logo="https://autoresbot.com/tmp_files/a32b61ea-7ca2-4c24-9752-e89d83dae8de.jpg">
       <div class="title-with-logo">
         <img class="product-logo" src="https://autoresbot.com/tmp_files/a32b61ea-7ca2-4c24-9752-e89d83dae8de.jpg">
@@ -147,15 +139,11 @@ footer a{color:var(--accent); font-weight:600; text-decoration:none;}
   </div>
 </div>
 
-
-<!-- ===================================================== -->
-<!-- ==============  DESAIN CATEGORY  ===================== -->
-<!-- ===================================================== -->
+<!-- CATEGORY DESAIN -->
 <div class="category">
   <h2>DESAIN</h2>
   <div class="grid">
 
-    <!-- KARTU NAMA -->
     <div class="card" data-product="DESAIN KARTU NAMA" data-logo="https://autoresbot.com/tmp_files/b0f47d9d-4b57-47bf-929c-342a0ba089f5.jpg">
       <div class="title-with-logo">
         <img class="product-logo" src="https://autoresbot.com/tmp_files/b0f47d9d-4b57-47bf-929c-342a0ba089f5.jpg">
@@ -165,7 +153,6 @@ footer a{color:var(--accent); font-weight:600; text-decoration:none;}
       <button class="btn btn-ghost openModalBtn">Lihat Varian</button>
     </div>
 
-    <!-- BENNER -->
     <div class="card" data-product="DESAIN BENNER" data-logo="https://autoresbot.com/tmp_files/d2dee100-257a-4d05-9179-d5ba5de7ccae.jpg">
       <div class="title-with-logo">
         <img class="product-logo" src="https://autoresbot.com/tmp_files/d2dee100-257a-4d05-9179-d5ba5de7ccae.jpg">
@@ -178,10 +165,7 @@ footer a{color:var(--accent); font-weight:600; text-decoration:none;}
   </div>
 </div>
 
-
-<!-- ================================================= -->
-<!-- ================   MODAL   ======================= -->
-<!-- ================================================= -->
+<!-- MODAL -->
 <div class="modal-backdrop" id="modalBackdrop">
   <div class="modal">
     <h3 id="modalTitle"></h3>
@@ -191,54 +175,56 @@ footer a{color:var(--accent); font-weight:600; text-decoration:none;}
   </div>
 </div>
 
-
-<!-- ================================================= -->
-<!-- ================   FOOTER   ====================== -->
-<!-- ================================================= -->
+<!-- FOOTER -->
 <footer>
 © 2025 <strong>IPUNGG SHOP</strong> | 📧 ipungnotdev@gmail.com | 📞 6283840810226
 </footer>
 
-
-<!-- ================================================= -->
-<!-- ================   MUSIK   ======================= -->
-<!-- ================================================= -->
-<audio id="bgm" src="https://files.catbox.moe/cp5sqn.mp3" autoplay loop></audio>
-
+<!-- AUDIO & TOMBOL -->
+<audio id="bgm" src="https://files.catbox.moe/cp5sqn.mp3" loop muted></audio>
 <button id="musicBtn">🔊 Musik</button>
 
 <script>
 const bgm=document.getElementById("bgm");
 const musicBtn=document.getElementById("musicBtn");
 
-let muted=false;
+// Fungsi play musik otomatis
+function playMusic() {
+  bgm.play().catch(()=>{}); // cegah error autoplay
+  bgm.muted = false;
+}
 
-musicBtn.onclick=()=>{
-  muted=!muted;
-  bgm.muted=muted;
-  musicBtn.textContent=muted ? "🔇 Unmute" : "🔊 Musik";
+// Coba autoplay setelah load beberapa kali
+window.addEventListener("load", ()=>{
+  playMusic();
+  setTimeout(playMusic, 500);
+  setTimeout(playMusic, 1000);
+});
+
+// Tombol kontrol musik manual
+musicBtn.onclick = () => {
+  if (bgm.paused) {
+    bgm.play().catch(()=>{});
+    bgm.muted=false;
+    musicBtn.textContent = "🔇 Stop";
+  } else {
+    bgm.pause();
+    musicBtn.textContent = "🔊 Musik";
+  }
 };
 
 /* =====================================================
    VARIAN PRODUK
 ===================================================== */
 const productVariants = {
-
   "SEWA BOT":[
-    {name:"SW Grup – 15 Hari", price:4000},
-    {name:"SW Grup – 30 Hari (Promo)", price:3000},
-    {name:"SW Grup – 60 Hari", price:10000},
-    {name:"SW Grup – 90 Hari", price:20000},
-    {name:"Grup Premium – 15 Hari", price:12000},
-    {name:"Grup Premium – 30 Hari", price:23000},
-    {name:"Grup Premium – 60 Hari", price:44000},
-    {name:"Grup Premium – 90 Hari", price:66000},
-    {name:"User Premium – 15 Hari", price:7000},
-    {name:"User Premium – 30 Hari", price:10000},
-    {name:"User Premium – 60 Hari", price:18000},
-    {name:"User Premium – 90 Hari", price:25000}
+    {name:"SW Grup – 15 Hari", price:4000},{name:"SW Grup – 30 Hari (Promo)", price:3000},
+    {name:"SW Grup – 60 Hari", price:10000},{name:"SW Grup – 90 Hari", price:20000},
+    {name:"Grup Premium – 15 Hari", price:12000},{name:"Grup Premium – 30 Hari", price:23000},
+    {name:"Grup Premium – 60 Hari", price:44000},{name:"Grup Premium – 90 Hari", price:66000},
+    {name:"User Premium – 15 Hari", price:7000},{name:"User Premium – 30 Hari", price:10000},
+    {name:"User Premium – 60 Hari", price:18000},{name:"User Premium – 90 Hari", price:25000}
   ],
-
   "PANEL PTERODACTYL":[
     {name:"2GB RAM", price:1000},{name:"3GB RAM", price:2000},
     {name:"4GB RAM", price:3000},{name:"5GB RAM", price:4000},
@@ -246,24 +232,16 @@ const productVariants = {
     {name:"8GB RAM", price:7000},{name:"9GB RAM", price:8000},
     {name:"10GB RAM", price:9000},{name:"Unlimited RAM", price:12000}
   ],
-
   "DESAIN BENNER":[
-    {name:"BENNER EVENT", price:15000},
-    {name:"BENNER PROMOSI", price:20000},
-    {name:"BENNER SOSMED", price:25000}
+    {name:"BENNER EVENT", price:15000},{name:"BENNER PROMOSI", price:20000},{name:"BENNER SOSMED", price:25000}
   ],
-
   "DESAIN KARTU NAMA":[
-    {name:"Basic", price:5000},
-    {name:"Premium", price:10000}
+    {name:"Basic", price:5000},{name:"Premium", price:10000}
   ],
-
   "RENAME SCRIPT":[
-    {name:"Rename Biasa", price:5000},
-    {name:"Rename Full Akar", price:10000}
+    {name:"Rename Biasa", price:5000},{name:"Rename Full Akar", price:10000}
   ]
 };
-
 
 const modalBackdrop=document.getElementById("modalBackdrop");
 const variantsList=document.getElementById("variantsList");
@@ -321,4 +299,4 @@ document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") modalBackdrop.cl
 </script>
 
 </body>
-      </html>
+  </html>
