@@ -4,83 +4,127 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>IPUNGG SHOP — Katalog Produk</title>
+
 <style>
 :root{
-  --bg:#f9fafb; --card:#fff; --muted:#6b7280; --accent:#10b981; --wa:#25D366; --wa-dark:#1EBE5A; --max-width:980px;
+  --bg:#f9fafb; --card:#fff; --muted:#6b7280; 
+  --accent:#10b981; --wa:#25D366; --max-width:980px;
 }
+
 body{
-  margin:0; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background:var(--bg); color:#111827; display:flex; flex-direction:column; align-items:center;
-  min-height:100vh; padding:0 16px 40px;
+  margin:0; font-family:Inter, system-ui;
+  background:var(--bg); color:#111827;
+  display:flex; flex-direction:column; align-items:center;
+  padding:0 16px 40px;
 }
+
 header img{width:100%; border-radius:12px;}
-.category{width:100%; max-width:var(--max-width); margin-top:20px;}
-.category h2{margin:12px 0; font-size:1.2rem;}
-.grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px;}
-.card{background:var(--card); border-radius:14px; padding:14px; box-shadow:0 6px 18px rgba(15,23,42,0.04); display:flex; flex-direction:column; align-items:center; gap:10px;}
-.title-with-logo{display:flex; align-items:center; gap:8px; margin-bottom:8px;}
-.product-logo{width:40px; height:40px; object-fit:contain;}
-.title{font-weight:700;}
+
+.category{
+  width:100%; max-width:var(--max-width); margin-top:20px;
+}
+.category h2{
+  margin:12px 0; font-size:1.2rem;
+}
+
+.grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px;
+}
+
+.card{
+  background:var(--card); border-radius:14px;
+  padding:14px; box-shadow:0 6px 18px rgba(15,23,42,0.04);
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+}
+
+.title-with-logo{
+  display:flex; align-items:center; gap:10px;
+}
+.product-logo{
+  width:42px; height:42px; border-radius:8px; object-fit:cover;
+}
+
+.title{font-weight:700; font-size:1rem;}
 .subtitle{color:var(--accent); font-weight:700;}
-.desc{text-align:center;}
-.btn{padding:10px 14px; border-radius:10px; border:0; cursor:pointer; font-weight:700; margin-top:5px;}
+.desc{text-align:center; font-size:0.9rem;}
+
+.btn{
+  padding:10px 14px; border-radius:10px; border:0;
+  cursor:pointer; font-weight:700; margin-top:5px;
+}
 .btn-ghost{background:#eee;}
 .btn-wa{background:var(--wa); color:#fff;}
-.modal-backdrop{position:fixed; inset:0; background:rgba(0,0,0,0.45); display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:0.2s;}
-.modal-backdrop.show{opacity:1; pointer-events:auto;}
-.modal{background:var(--card); padding:18px; border-radius:12px; width:90%; max-width:480px;}
-.variant{display:flex; justify-content:space-between; padding:10px; border:1px solid rgba(15,23,42,0.06); border-radius:10px; margin-bottom:5px; cursor:pointer;}
-.variant.selected{border:2px solid var(--accent);}
-footer{margin-top:26px; width:100%; max-width:var(--max-width); padding:14px; background:#fff; border-radius:12px; box-shadow:0 6px 18px rgba(15,23,42,0.04); text-align:center; color:var(--muted); font-size:0.95rem;}
-footer a{color:var(--accent); text-decoration:none; font-weight:600;}
-@media(max-width:420px){.product-logo{width:30px;height:30px}}
+
+.modal-backdrop{
+  position:fixed; inset:0; background:rgba(0,0,0,0.45);
+  display:flex; justify-content:center; align-items:center;
+  opacity:0; pointer-events:none; transition:0.2s;
+}
+.modal-backdrop.show{
+  opacity:1; pointer-events:auto;
+}
+
+.modal{
+  background:var(--card);
+  padding:20px; border-radius:14px;
+  width:90%; max-width:420px;
+}
+
+.variant{
+  display:flex; justify-content:space-between;
+  padding:10px; border:1px solid #ddd;
+  border-radius:10px; margin-bottom:6px; cursor:pointer;
+}
+.variant.selected{
+  border:2px solid var(--accent); background:#ecfdf5;
+}
+
+footer{
+  margin-top:30px; width:100%; max-width:var(--max-width);
+  padding:15px; background:#fff; border-radius:12px;
+  color:var(--muted); text-align:center;
+  box-shadow:0 6px 18px rgba(15,23,42,0.04);
+  font-size:0.95rem;
+}
+footer a{color:var(--accent); font-weight:600; text-decoration:none;}
+
+#musicBtn{
+  position:fixed; bottom:16px; right:16px;
+  background:#000000aa; color:white; border:0;
+  padding:10px 14px; border-radius:10px;
+  font-weight:700; cursor:pointer; font-size:0.85rem;
+  backdrop-filter:blur(4px);
+}
 </style>
 </head>
 <body>
 
-<!-- MUSIK OTOMATIS -->
-<audio id="bgMusic" src="https://files.catbox.moe/4fer77.mp3" loop></audio>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const music = document.getElementById("bgMusic");
-
-  // Autoplay setelah klik pertama (menghindari blokir browser)
-  document.body.addEventListener("click", () => {
-    music.play().catch(()=>{});
-  }, { once: true });
-
-  // Tombol musik
-  const btn = document.createElement("div");
-  btn.id = "musicToggle";
-  btn.textContent = "🔊 Musik";
-  btn.style = "position:fixed;bottom:20px;right:20px;background:#10b981;color:#fff;padding:10px 14px;border-radius:12px;cursor:pointer;z-index:999;";
-  document.body.append(btn);
-
-  let play = true;
-  btn.onclick = () => {
-    if (play){
-      music.pause();
-      btn.textContent = "🔇 Musik";
-    } else {
-      music.play();
-      btn.textContent = "🔊 Musik";
-    }
-    play = !play;
-  };
-});
-</script>
-
+<!-- =============================================== -->
+<!--              BANNER / HEADER                    -->
+<!-- =============================================== -->
 <header>
-  <img src="https://autoresbot.com/tmp_files/f17e03f2-6c9f-42e4-93a5-d11a5372d265.jpg">
+  <img src="https://autoresbot.com/tmp_files/d9d11a68-9a7b-4225-b5ce-de9154764762.jpg">
 </header>
 
-<!-- HOSTING -->
+
+<!-- ===================================================== -->
+<!-- ==============  HOSTING CATEGORY  ===================== -->
+<!-- ===================================================== -->
 <div class="category">
   <h2>HOSTING</h2>
   <div class="grid">
 
-    <!-- PANEL PTERODACTYL -->
+    <!-- SEWA BOT -->
+    <div class="card" data-product="SEWA BOT" data-logo="https://autoresbot.com/tmp_files/f17e03f2-6c9f-42e4-93a5-d11a5372d265.jpg">
+      <div class="title-with-logo">
+        <img class="product-logo" src="https://autoresbot.com/tmp_files/f17e03f2-6c9f-42e4-93a5-d11a5372d265.jpg">
+        <span class="title">SEWA BOT</span>
+      </div>
+      <div class="desc">Mulai dari <span class="subtitle">Rp4.000</span></div>
+      <button class="btn btn-ghost openModalBtn">Lihat Varian</button>
+    </div>
+
+    <!-- PANEL -->
     <div class="card" data-product="PANEL PTERODACTYL" data-logo="https://autoresbot.com/tmp_files/9b894a9a-e176-4268-96d1-c5718340cf9c.jpg">
       <div class="title-with-logo">
         <img class="product-logo" src="https://autoresbot.com/tmp_files/9b894a9a-e176-4268-96d1-c5718340cf9c.jpg">
@@ -103,7 +147,10 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 </div>
 
-<!-- DESAIN -->
+
+<!-- ===================================================== -->
+<!-- ==============  DESAIN CATEGORY  ===================== -->
+<!-- ===================================================== -->
 <div class="category">
   <h2>DESAIN</h2>
   <div class="grid">
@@ -131,37 +178,92 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 </div>
 
-<!-- MODAL PRODUK -->
+
+<!-- ================================================= -->
+<!-- ================   MODAL   ======================= -->
+<!-- ================================================= -->
 <div class="modal-backdrop" id="modalBackdrop">
   <div class="modal">
     <h3 id="modalTitle"></h3>
-    <div class="variants" id="variantsList"></div>
+    <div id="variantsList"></div>
     <a id="waCheckoutBtn" class="btn btn-wa" href="#" target="_blank">Chat via WhatsApp</a>
     <button id="closeModalBtn" class="btn btn-ghost">Tutup</button>
   </div>
 </div>
 
+
+<!-- ================================================= -->
+<!-- ================   FOOTER   ====================== -->
+<!-- ================================================= -->
 <footer>
 © 2025 <strong>IPUNGG SHOP</strong> | 📧 ipungnotdev@gmail.com | 📞 6283840810226
 </footer>
 
+
+<!-- ================================================= -->
+<!-- ================   MUSIK   ======================= -->
+<!-- ================================================= -->
+<audio id="bgm" src="https://files.catbox.moe/4fer77.mp3" autoplay loop></audio>
+
+<button id="musicBtn">🔊 Musik</button>
+
 <script>
-const productVariants={
+const bgm=document.getElementById("bgm");
+const musicBtn=document.getElementById("musicBtn");
+
+let muted=false;
+
+musicBtn.onclick=()=>{
+  muted=!muted;
+  bgm.muted=muted;
+  musicBtn.textContent=muted ? "🔇 Unmute" : "🔊 Musik";
+};
+
+/* =====================================================
+   VARIAN PRODUK
+===================================================== */
+const productVariants = {
+
+  "SEWA BOT":[
+    {name:"SW Grup – 15 Hari", price:4000},
+    {name:"SW Grup – 30 Hari (Promo)", price:3000},
+    {name:"SW Grup – 60 Hari", price:10000},
+    {name:"SW Grup – 90 Hari", price:20000},
+    {name:"Grup Premium – 15 Hari", price:12000},
+    {name:"Grup Premium – 30 Hari", price:23000},
+    {name:"Grup Premium – 60 Hari", price:44000},
+    {name:"Grup Premium – 90 Hari", price:66000},
+    {name:"User Premium – 15 Hari", price:7000},
+    {name:"User Premium – 30 Hari", price:10000},
+    {name:"User Premium – 60 Hari", price:18000},
+    {name:"User Premium – 90 Hari", price:25000}
+  ],
+
   "PANEL PTERODACTYL":[
-    {name:"2GB RAM", price:1000},{name:"3GB RAM", price:2000},{name:"4GB RAM", price:3000},{name:"5GB RAM", price:4000},
-    {name:"6GB RAM", price:5000},{name:"7GB RAM", price:6000},{name:"8GB RAM", price:7000},{name:"9GB RAM", price:8000},
+    {name:"2GB RAM", price:1000},{name:"3GB RAM", price:2000},
+    {name:"4GB RAM", price:3000},{name:"5GB RAM", price:4000},
+    {name:"6GB RAM", price:5000},{name:"7GB RAM", price:6000},
+    {name:"8GB RAM", price:7000},{name:"9GB RAM", price:8000},
     {name:"10GB RAM", price:9000},{name:"Unlimited RAM", price:12000}
   ],
+
   "DESAIN BENNER":[
-    {name:"BENNER EVENT", price:15000},{name:"BENNER PROMOSI", price:20000},{name:"BENNER SOSMED", price:25000}
+    {name:"BENNER EVENT", price:15000},
+    {name:"BENNER PROMOSI", price:20000},
+    {name:"BENNER SOSMED", price:25000}
   ],
+
   "DESAIN KARTU NAMA":[
-    {name:"BASIC", price:5000},{name:"PREMIUM", price:10000}
+    {name:"Basic", price:5000},
+    {name:"Premium", price:10000}
   ],
+
   "RENAME SCRIPT":[
-    {name:"Rename Biasa", price:5000},{name:"Rename Sampai Akar", price:10000}
+    {name:"Rename Biasa", price:5000},
+    {name:"Rename Full Akar", price:10000}
   ]
 };
+
 
 const modalBackdrop=document.getElementById("modalBackdrop");
 const variantsList=document.getElementById("variantsList");
@@ -182,29 +284,40 @@ function openModal(product){
   modalTitle.textContent="Pilih Varian — "+product;
   const variants=productVariants[product];
   variantsList.innerHTML="";
+
   variants.forEach((v,i)=>{
     const el=document.createElement("div");
     el.className="variant"+(i===0?" selected":"");
     el.innerHTML=`<span>${v.name}</span><span>Rp${v.price.toLocaleString()}</span>`;
-    el.addEventListener("click", ()=>{selectedIndex=i; updateModal(product);});
+    el.addEventListener("click", ()=>{
+      selectedIndex=i;
+      updateModal(product);
+    });
     variantsList.appendChild(el);
   });
+
   updateModal(product);
   modalBackdrop.classList.add("show");
 }
 
 function updateModal(product){
   const variants=productVariants[product];
-  variants.forEach((v,i)=>{
-    variantsList.children[i].classList.toggle("selected", i===selectedIndex);
-  });
   const sel=variants[selectedIndex];
-  waCheckoutBtn.href=`https://wa.me/6283840810226?text=`+encodeURIComponent(`Halo, saya ingin beli ${product} varian ${sel.name} (Rp${sel.price.toLocaleString()})`);
+
+  [...variantsList.children].forEach((el,i)=>{
+    el.classList.toggle("selected", i===selectedIndex);
+  });
+
+  waCheckoutBtn.href=
+    "https://wa.me/6283840810226?text=" +
+    encodeURIComponent(
+      `Halo, saya ingin membeli ${product} varian ${sel.name} (Rp${sel.price.toLocaleString()})`
+    );
 }
 
-closeModalBtn.addEventListener("click", ()=>{modalBackdrop.classList.remove("show");});
-modalBackdrop.addEventListener("click",(e)=>{if(e.target===modalBackdrop) modalBackdrop.classList.remove("show");});
-document.addEventListener("keydown",(e)=>{if(e.key==="Escape") modalBackdrop.classList.remove("show");});
+closeModalBtn.addEventListener("click", ()=> modalBackdrop.classList.remove("show"));
+modalBackdrop.addEventListener("click",(e)=>{ if(e.target===modalBackdrop) modalBackdrop.classList.remove("show") });
+document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") modalBackdrop.classList.remove("show") });
 </script>
 
 </body>
